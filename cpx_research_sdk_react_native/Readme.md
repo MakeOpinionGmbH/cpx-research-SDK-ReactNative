@@ -68,6 +68,7 @@ Note: If you don't pass a configuration for any of the corner, sidebar or notifi
   accentColor="#ff9800"  // the accent color for the browser/webview icons an progress bars
   appId="1"
   userId="2"
+  add_info="&param1=info1&param2=info2" // optional: if you want to specify additional params
   isHidden={isCpxLayerHidden}  // in case you want to hide the widget completely, simplye pass a boolean (for example a state variable).
   cornerWidget={{
     backgroundColor: "#ff9800",

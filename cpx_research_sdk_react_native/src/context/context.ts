@@ -41,6 +41,7 @@ export interface ISidebarWidgetStyle extends IWidgetStyle
 export interface ICpxConfig
 {
   accentColor: string;
+  add_info?: string;
   appId: string;
   bindFetchSurveysAndTransactions?: (fetchSurveysAndTransactions: () => Promise<void>) => void;
   bindMarkTransactionAsPaid?: (markTransactionAsPaid: (transactionId: string, messageId: string) => Promise<void>) => void;

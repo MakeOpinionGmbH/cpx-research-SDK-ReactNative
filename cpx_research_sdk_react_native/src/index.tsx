@@ -43,7 +43,7 @@ let CpxResearch: FunctionComponent<ICpxConfig> = config =>
   } = memoizedAppContext.appContext;
 
   const requestParams = useMemo(
-    () => getRequestParams(config.appId, config.userId),
+    () => getRequestParams(config.appId, config.userId, config.add_info),
     [config.appId, config.userId]
   );
 

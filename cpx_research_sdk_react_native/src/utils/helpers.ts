@@ -4,13 +4,15 @@ const { version } = require("../../package.json");
 
 export interface IRequestParams
 {
+  add_info: string | undefined;
   app_id: string;
   ext_user_id: string;
   sdk: string;
   skdVersion: string;
 }
 
-export const getRequestParams = (appId: string, userId: string): IRequestParams => ({
+export const getRequestParams = (appId: string, userId: string, addInfo?: string): IRequestParams => ({
+  add_info: addInfo ?? "",
   app_id: appId,
   ext_user_id: userId,
   sdk: "react-native",
@@ -37,10 +39,21 @@ export const throwErrorIfColorStringsAreNoHexColor = (strings: (string | undefin
 export const buildQueryString = (params: Record<string, any>): string =>
 {
   const queryString = Object.keys(params)
-    .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k as keyof typeof params]))
+    .map(k => 
+    {
+      if(k === "add_info") 
+      {
+        return null; // Use null instead of undefined
+      }
+
+      return encodeURIComponent(k) + "=" + encodeURIComponent(params[k as keyof typeof params]);
+    })
+    .filter(value => value !== null) // Filter out null values
     .join("&");
 
-  return "?" + queryString;
+  const finalQueryString = queryString + params.add_info;
+  
+  return "?" + finalQueryString;
 };
 
 export const deepPropsComparison = (prevProps: Record<string, any>, nextProps: Record<string, any>): boolean => deepEqual(prevProps, nextProps);

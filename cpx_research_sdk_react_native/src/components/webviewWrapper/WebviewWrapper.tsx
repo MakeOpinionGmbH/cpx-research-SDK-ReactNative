@@ -30,10 +30,21 @@ export const WebviewWrapper: FunctionComponent = () =>
 {
   const { appContext, appDispatch } = useContext<IAppContext>(AppStoreContext);
 
-  const { config: { appId, userId } } = appContext;
+  const {
+    config: {
+      add_info, appId, userId 
+    } 
+  } = appContext;
 
   const baseUrl = urls.baseUrl + endpoints.homeEndpoint;
-  const requestParams = useMemo(() => getRequestParams(appId, userId), [appId, userId]);
+  const requestParams = useMemo(() => getRequestParams(appId, userId, add_info), [appId, userId, add_info]);
+
+  console.log(requestParams);
+
+  console.log(buildQueryString({
+    ...requestParams,
+    survey_id: appContext.cpxState === "webViewSingleSurvey" ? appContext.singleSurveyIdForWebView : undefined,
+  }));
 
   const tabs: ITabs = {
     help: baseUrl + buildQueryString({

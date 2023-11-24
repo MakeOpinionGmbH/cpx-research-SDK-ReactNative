@@ -28,6 +28,7 @@ const HomeScreen: FunctionComponent<StackScreenProps<any>> = ({ navigation }) =>
         accentColor="#ff9800"
         appId="8614"
         userId="2"
+        add_info="&additional_info1=123"
         onSurveysUpdate={surveys => setSurveys(surveys)}
         onTextsUpdate={texts => setTexts(texts)}
         onTransactionsUpdate={(transactions) => console.log("onSurveysUpdate Callback", transactions)}
